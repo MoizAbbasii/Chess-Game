@@ -1,6 +1,6 @@
 ![logo](https://github.com/SamimSadeed/SamimSadeed/blob/main/github-logo%2090.png)
 <h1 align="center">Hello 👋, I'm a GitHub user</h1>
-<h2 align="center">Business Development Officer</h2>
+<h2 align="center">Newbie Programmer</h2>
 <img align="right" alt="coding" width="350" src="https://avatars.githubusercontent.com/u/19213393?v=4">
 
  
