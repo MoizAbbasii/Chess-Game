@@ -2,7 +2,6 @@
 <h1 align="center">Hello 👋, I'm a GitHub user</h1>
 <h2 align="center">Business Development Officer</h2>
 <img align="right" alt="coding" width="350" src="https://avatars.githubusercontent.com/u/19213393?v=4">
-<p align="left"> <img src="https://komarev.com/ghpvc/?username=samimsadeed&label=Profile%20views&color=0e75b6&style=flat" alt="samimsadeed" /> </p>
 
  
 
@@ -37,11 +36,11 @@
 
  
 
-<p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=SamimSadeed&show_icons=true&locale=en" alt="SamimSadeed" /></p>
+<p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=MoizAbbasii&show_icons=true&locale=en" alt="MoizAbbasii" /></p>
 
  
 
-<p><img align="right" src="https://github-readme-streak-stats.herokuapp.com/?user=samimsadeed&" alt="samimsadeed" /></p>
+<p><img align="right" src="https://github-readme-streak-stats.herokuapp.com/?user=MoizAbbasii&" alt="MoizAbbasii" /></p>
 
 
 has context menu
