@@ -1,51 +1,125 @@
-![logo](https://github.com/SamimSadeed/SamimSadeed/blob/main/github-logo%2090.png)
-<h1 align="center">Hello 👋, I'm a GitHub user</h1>
-<h2 align="center">Newbie Programmer</h2>
-<img align="right" alt="coding" width="350" src="https://avatars.githubusercontent.com/u/19213393?v=4">
+# Java Chess Game
 
- 
+## Main Code For Chess Game in java.
+This code provides a basic implementation of a chess game. It allows players to enter moves in the format "fromSquare toSquare" (e.g., "e2 e4"). The game continues until the player enters "quit". The board is displayed after each move.
 
-- 🌱 **I’m currently learning:** **Agile, GitHub, Outsystems...etc**
+Note that this code does not include the complete rules or logic of chess. It is a simplified version to demonstrate the basic structure and functionality of a chess game. You can further enhance this code to include more advanced rules, move validation, game status tracking, and a graphical user interface if desired.
 
- 
+import java.util.Scanner;
 
-- 💬 **Ask me about:** **Anything you would like to know about me.**
+public class ChessGame {
+    private static final int BOARD_SIZE = 8;
+    private static final String EMPTY = " ";
+    private static final String[] INITIAL_BOARD = {
+            "r", "n", "b", "q", "k", "b", "n", "r",
+            "p", "p", "p", "p", "p", "p", "p", "p",
+            EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY,
+            EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY,
+            EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY,
+            EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY, EMPTY,
+            "P", "P", "P", "P", "P", "P", "P", "P",
+            "R", "N", "B", "Q", "K", "B", "N", "R"
+    };
 
- 
+    private static String[][] board;
 
-- 📫 **How to reach me:** **...............**
+    public static void main(String[] args) {
+        initializeBoard();
+        displayBoard();
 
- 
+        Scanner scanner = new Scanner(System.in);
+        boolean gameRunning = true;
+        while (gameRunning) {
+            System.out.print("Enter move (e.g., 'e2 e4'): ");
+            String move = scanner.nextLine();
 
-- ⚡ **Fun fact:** **Can't do 'Ratta' while learning something.**
+            if (move.equalsIgnoreCase("quit")) {
+                gameRunning = false;
+            } else {
+                boolean validMove = processMove(move);
+                if (validMove) {
+                    displayBoard();
+                } else {
+                    System.out.println("Invalid move! Try again.");
+                }
+            }
+        }
 
- 
+        System.out.println("Game over.");
+    }
 
-<h3 align="left">Connect with me:</h3>
-<a href="https://fb.com/" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/facebook.svg" alt="MSS" height="35" width="35" /></a>
-<a href="https://instagram.com/" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg" alt="MSS" height="35" width="35" /></a>
-</p>
+    private static void initializeBoard() {
+        board = new String[BOARD_SIZE][BOARD_SIZE];
 
+        for (int rank = 0; rank < BOARD_SIZE; rank++) {
+            for (int file = 0; file < BOARD_SIZE; file++) {
+                int index = rank * BOARD_SIZE + file;
+                board[rank][file] = INITIAL_BOARD[index];
+            }
+        }
+    }
 
- 
+    private static void displayBoard() {
+        System.out.println();
+        for (int rank = BOARD_SIZE - 1; rank >= 0; rank--) {
+            System.out.print(rank + 1 + " ");
+            for (int file = 0; file < BOARD_SIZE; file++) {
+                System.out.print(board[rank][file] + " ");
+            }
+            System.out.println();
+        }
+        System.out.println("  a b c d e f g h");
+        System.out.println();
+    }
 
-<p align="left">
-</p>
+    private static boolean processMove(String move) {
+        String[] moveParts = move.trim().split(" ");
 
- 
+        if (moveParts.length != 2) {
+            return false;
+        }
 
+        String from = moveParts[0];
+        String to = moveParts[1];
 
-<h3 align="left">Languages and Tools:</h3>
-<p align="left"> <a href="https://developer.android.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/android/android-original-wordmark.svg" alt="android" width="40" height="40"/> </a> <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> </a> <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a> </p>
+        if (!isValidSquare(from) || !isValidSquare(to)) {
+            return false;
+        }
 
- 
+        int fromRank = getRank(from);
+        int fromFile = getFile(from);
+        int toRank = getRank(to);
+        int toFile = getFile(to);
 
-<p>&nbsp;<img align="center" src="https://github-readme-stats.vercel.app/api?username=MoizAbbasii&show_icons=true&locale=en" alt="MoizAbbasii" /></p>
+        String piece = board[fromRank][fromFile];
+        board[fromRank][fromFile] = EMPTY;
+        board[toRank][toFile] = piece;
 
- 
+        return true;
+    }
 
-<p><img align="right" src="https://github-readme-streak-stats.herokuapp.com/?user=MoizAbbasii&" alt="MoizAbbasii" /></p>
+    private static boolean isValidSquare(String square) {
+        if (square.length() != 2) {
+            return false;
+        }
 
+        char fileChar = square.charAt(0);
+        char rankChar = square.charAt(1);
 
-has context menu
-Compose
+        if (fileChar < 'a' || fileChar > 'h' || rankChar < '1' || rankChar > '8') {
+            return false;
+        }
+
+        return true;
+    }
+
+    private static int getRank(String square) {
+        char rankChar = square.charAt(1);
+        return Character.getNumericValue(rankChar) - 1;
+    }
+
+    private static int getFile(String square) {
+        char fileChar = square.charAt(0);
+        return fileChar - 'a';
+    }
+}
